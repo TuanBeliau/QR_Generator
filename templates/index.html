@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.ico') }}">
+    <title>QR Generator</title>
+</head>
+<body class="bg-black">
+    <div class="md:relative flex flex-col items-center">
+        <h1 class="text-white pt-4 text-[35px] font-bold">QR Image <br> Generator</h1>
+        <img class="pt-4 h-[180px] w-[180px]" src="{{ url_for('static', filename='img/qr.png') }}" alt="Logo">
+
+        <form method="POST" class="flex flex-col items-center w-full px-4 md:px-40">
+            <input class="text-black bg-white rounded-lg mt-10 w-full py-2 px-4 focus:outline-none" type="text" name="data" placeholder="Masukkan link atau kata">
+            <button class="font-bold bg-blue-500 rounded-lg max-w-full text-black my-4 py-2 px-10">Generate</button>
+        </form>
+
+        {% if data %}
+            <div class="bg-white">
+                <img class="w-[180px] h-[180px]" src="data:image/png;base64,{{ data }}" alt="Hasil">
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
